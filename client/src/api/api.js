@@ -1,4 +1,4 @@
-// client/src/api/api.js
+
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:7000/api';
@@ -10,7 +10,7 @@ const api = axios.create({
   }
 });
 
-// Add auth token to requests if available
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
