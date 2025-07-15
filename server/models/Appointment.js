@@ -1,4 +1,3 @@
-// server/models/Appointment.js
 const mongoose = require('mongoose');
 
 const appointmentSchema = new mongoose.Schema({
@@ -26,6 +25,19 @@ const appointmentSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  isRecurring: {         
+    type: Boolean,
+    default: false
+  },
+  frequency: {
+    type: String,
+    enum: ['daily', 'weekly', null],
+    default: null
+  },
+  repeatUntil: {
+    type: Date,
+    default: null
+  },
   location: {
     type: String,
     trim: true
@@ -36,7 +48,6 @@ const appointmentSchema = new mongoose.Schema({
   }
 });
 
-// Index for faster queries
 appointmentSchema.index({ user: 1, startTime: 1 });
 
 module.exports = mongoose.model('Appointment', appointmentSchema);
